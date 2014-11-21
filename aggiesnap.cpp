@@ -15,9 +15,9 @@ try {
    
     Image menu_background {Point{100,0}, "images/menu.jpg"};
     
-    Fl_Image *scaled_image = menu_background->copy(500, 500);
+    //Fl_Image *scaled_image = menu_background->copy(500, 500); //my first attempt at resizing an image
 
-    //menu_background.set_mask(Point{0,0},500,500);
+    menu_background.set_mask(Point{0,0},500,500);
     
     win.attach(menu_background);
         
