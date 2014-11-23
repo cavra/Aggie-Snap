@@ -2,6 +2,6 @@ Note for you guys: I changed Simple_window.cpp and .h to Menu_window.cpp and .h,
 
 Once inside the same directory as aggiesnap.cpp, type the following command to run:
 
-g++ -std=c++14 *.cpp *.h fltk/*.cpp -lfltk -lfltk_images
+g++ -std=c++14 *.cpp fltk/*.cpp -lfltk -lfltk_images
 
 ~Cory
