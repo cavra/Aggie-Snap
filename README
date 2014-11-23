@@ -1,4 +1,4 @@
-Note for you guys: most of the code so far is located in Simple_window.cpp and Simple_window.h.  
+Note for you guys: I changed Simple_window.cpp and .h to Menu_window.cpp and .h, although the code is mostly the same. I also put Isach's and Jack's code in image.cpp, but that part of the program isn't working yet for some reason. It does, hoever, compile fine. Just a bit buggy 
 
 Once inside the same directory as aggiesnap.cpp, type the following command to run:
 
