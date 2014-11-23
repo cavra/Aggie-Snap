@@ -1,0 +1,7 @@
+Note for you guys: most of the code so far is located in Simple_window.cpp and Simple_window.h.  
+
+Once inside the same directory as aggiesnap.cpp, type the following command to run:
+
+g++ -std=c++14 aggiesnap.cpp fltk/*.cpp -lfltk -lfltk_images
+
+~Cory
