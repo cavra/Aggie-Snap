@@ -19,7 +19,7 @@
 #include <FL/fl_draw.H>
 #include <FL/Fl_Image.H>
 #include "Point.h"
-#include "std_lib_facilities_4.h"
+#include "../std_lib_facilities_4.h"
 
 namespace Graph_lib {
 
@@ -381,6 +381,7 @@ struct Image : Shape {
     ~Image() { delete p; }
     void draw_lines() const;
     void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
+    //virtual Fl_Image *copy(int W, int H);
 private:
     int w,h;  // define "masking box" within image relative to position (cx,cy)
     int cx,cy; 

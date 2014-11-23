@@ -3,23 +3,18 @@
 //Due: December, 2014
 
 #include "std_lib_facilities_4.h"
-#include "fltk/Simple_window.h"
+#include "fltk/Menu_window.h"
 #include "fltk/Graph.h"
 
 int main()
 try {
-    if(H112 != 201401L)error("Error: incorrect std_lib_facilities_4.h version ",
-                             H112);
+    if(H112 != 201401L)error("Error: incorrect std_lib_facilities_4.h version ", H112);
+    Menu_window win(Point(0,0),700,600,"AggieSnap");
     
-    Simple_window win(Point(100,100),700,600,"Menu");
-   
-    Image menu_background {Point{100,0}, "images/menu.jpg"};
+    //Image menu_background {Point{100,0}, "images/menu.jpg"};
+    //menu_background.set_mask(Point{0,0},600,500);
     
-    Fl_Image *scaled_image = menu_background->copy(500, 500);
-
-    //menu_background.set_mask(Point{0,0},500,500);
-    
-    win.attach(menu_background);
+    //win.attach(menu_background);
         
     win.wait_for_button();
     return 0;
