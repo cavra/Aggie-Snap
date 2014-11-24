@@ -35,7 +35,9 @@ namespace Graph_lib
 
         int x_max() const { return w; }
         int y_max() const { return h; }
-
+        
+        string win_title() const { return label(); }
+    
         void resize(int ww, int hh) { w=ww, h=hh; size(ww,hh); }
 
         void set_label(const string& s) { copy_label(s.c_str()); }

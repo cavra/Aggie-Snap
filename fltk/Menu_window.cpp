@@ -9,8 +9,13 @@
 // "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 //
 
+#include "../std_lib_facilities_4.h"
 #include "Menu_window.h"
-#include "Input_window.h"
+#include "File_window.h"
+#include "URL_window.h"
+#include "Search_window.h"
+#include "../input.h"
+#include "../images.h"
 
 using namespace Graph_lib;
 
@@ -99,6 +104,13 @@ void Menu_window::cb_quit(Address, Address pw)
 void Menu_window::next()
 {
     button_pushed = true;
+    increase_index();
+    extern int j;
+    extern vector<string> images_vector;
+    Image pic{Point{100,10}, images_vector[j]};
+    pic.set_mask(Point{0,0},500,490);
+    attach(pic);
+    redraw();
     wait_for_button();
 }
 
@@ -107,6 +119,13 @@ void Menu_window::next()
 void Menu_window::previous()
 {
     button_pushed = true;
+    decrease_index();
+    extern int j;
+    extern vector<string> images_vector;
+    Image pic{Point{100,10}, images_vector[j]};
+    pic.set_mask(Point{0,0},500,490);
+    attach(pic);
+    redraw();
     wait_for_button();
 }
 
@@ -115,8 +134,8 @@ void Menu_window::previous()
 void Menu_window::open()
 {
     button_pushed = true;
-    Input_window win_upload(Point(200,200),300,20,"Open File");
-    win_upload.wait_for_button();
+    File_window win_open(Point(200,200),400,50,"Open File");
+    win_open.wait_for_button();
     wait_for_button();
 }
 
@@ -125,7 +144,7 @@ void Menu_window::open()
 void Menu_window::upload()
 {
     button_pushed = true;
-    Input_window win_upload(Point(200,200),300,20,"Upload File");
+    URL_window win_upload(Point(200,200),400,70,"Upload File");
     win_upload.wait_for_button();
     wait_for_button();
 }
@@ -135,8 +154,8 @@ void Menu_window::upload()
 void Menu_window::search()
 {
     button_pushed = true;
-    Input_window win_upload(Point(200,200),300,20,"Search");
-    win_upload.wait_for_button();
+    Search_window win_search(Point(200,200),400,25,"Search");
+    win_search.wait_for_button();
     wait_for_button();
 }
 

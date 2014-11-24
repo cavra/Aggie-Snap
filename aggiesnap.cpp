@@ -5,16 +5,23 @@
 #include "std_lib_facilities_4.h"
 #include "fltk/Menu_window.h"
 #include "fltk/Graph.h"
+#include "images.h"
+#include "input.h"
 
 int main()
 try {
     if(H112 != 201401L)error("Error: incorrect std_lib_facilities_4.h version ", H112);
     Menu_window win(Point(0,0),700,600,"AggieSnap");
     
-    //Image menu_background {Point{100,0}, "images/menu.jpg"};
-    //menu_background.set_mask(Point{0,0},600,500);
+    get_images();
+    extern vector<string> images_vector;
     
-    //win.attach(menu_background);
+    extern int j;
+
+    Image pic{Point{100,0}, images_vector[j]};
+    pic.set_mask(Point{0,0},500,500);
+    
+    win.attach(pic);
         
     win.wait_for_button();
     return 0;
