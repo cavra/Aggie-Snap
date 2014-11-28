@@ -1,30 +1,28 @@
-#ifndef SEARCH_WINDOW_GUARD
-#define SEARCH_WINDOW_GUARD 1
+#ifndef IMAGE_WINDOW_GUARD
+#define IMAGE_WINDOW_GUARD 1
 
-#include "GUI.h"
+#include "GUI.h"    // for Simple_window only (doesn't really belong in Window.h)
 #include "Graph.h"
 
 using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
-struct Search_window : Graph_lib::Window {
-    Search_window(Point xy, int w, int h, const string& title );
+struct Image_window : Graph_lib::Window {
+    Image_window(Point xy, int w, int h, const string& title, const string& file_name);
     
     bool wait_for_button();
 
 private:
-    Button submit_button;
     Button quit_button;
     
-    In_box tag_input;
+    Image picture;
+    Text tagz;
     
     bool button_pushed;
     
-    static void cb_submit(Address, Address);
     static void cb_quit(Address, Address);
 
-    void submit();
     void quit();
 
 };

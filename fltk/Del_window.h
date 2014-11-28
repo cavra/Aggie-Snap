@@ -1,5 +1,5 @@
-#ifndef SEARCH_WINDOW_GUARD
-#define SEARCH_WINDOW_GUARD 1
+#ifndef DEL_WINDOW_GUARD
+#define DEL_WINDOW_GUARD 1
 
 #include "GUI.h"
 #include "Graph.h"
@@ -8,8 +8,8 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
-struct Search_window : Graph_lib::Window {
-    Search_window(Point xy, int w, int h, const string& title );
+struct Del_window : Graph_lib::Window {
+    Del_window(Point xy, int w, int h, const string& title );
     
     bool wait_for_button();
 
@@ -17,7 +17,7 @@ private:
     Button submit_button;
     Button quit_button;
     
-    In_box tag_input;
+    In_box image_input;
     
     bool button_pushed;
     

@@ -11,8 +11,11 @@
 // "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 //
 
+#include <FL/Fl_BMP_Image.H> //added
+#include <FL/Fl_PNG_Image.H> //added
 #include <FL/Fl_GIF_Image.H>
 #include <FL/Fl_JPEG_Image.H>
+
 #include "Graph.h"
 #include <cstring>
 
@@ -411,9 +414,18 @@ Suffix::Encoding get_encoding(const string& s)
     static SuffixMap smap[] = {
         {".jpg",  Suffix::jpg},
         {".jpeg", Suffix::jpg},
+		{".JPG",  Suffix::jpg},
+		{".JPEG", Suffix::jpg},
         {".gif",  Suffix::gif},
+		{".GIF",  Suffix::gif},
+		{".png",  Suffix::png},
+		{".PNG",  Suffix::png},
+		{".bmp",  Suffix::bmp},
+		{".BMP",  Suffix::bmp},
     };
 
+	//added png and bmp suffixes
+	
     for (int i = 0, n = ARRAY_SIZE(smap); i < n; i++)
     {
         int len = strlen(smap[i].extension);
@@ -449,12 +461,18 @@ Image::Image(Point xy, string s, Suffix::Encoding e)
     case Suffix::gif:
         p = new Fl_GIF_Image(s.c_str());
         break;
+	case Suffix::png:
+		p = new Fl_PNG_Image(s.c_str());
+		break;
+	case Suffix::bmp:
+		p = new Fl_BMP_Image(s.c_str());
+		break;
     default:    // Unsupported image encoding
         fn.set_label("unsupported file type \""+s+'\"');
         p = new Bad_image(30,20);    // the "error image"
     }
 }
-
+//added case for png and bmp files
 //------------------------------------------------------------------------------
 
 void Image::draw_lines() const
@@ -468,7 +486,5 @@ void Image::draw_lines() const
 }
 
 //------------------------------------------------------------------------------
-    
-    
-} // of namespace Graph_lib
 
+} // of namespace Graph_lib

@@ -1,5 +1,7 @@
 #include "URL_window.h"
-#include "../input.h"
+#include "Image_window.h"
+#include "Error_window.h"
+#include "../database.h"
 #include "../std_lib_facilities_4.h"
 
 using namespace Graph_lib;
@@ -58,9 +60,18 @@ void URL_window::cb_quit(Address, Address pw)
 
 void URL_window::submit()
 {
+    hide();
     button_pushed = true;
-    open_url(url_input.get_string(), tag_input.get_string(), name_input.get_string());
-    wait_for_button();
+    string image = "images/"+name_input.get_string();
+    if(open_url(url_input.get_string(), tag_input.get_string(), name_input.get_string())){
+        Image_window win_image(Point(200,200),500,500, name_input.get_string(), image);
+        win_image.wait_for_button();
+    }
+    else {
+        cerr<<"This image does not exist or this is an invalid url"<<endl;
+        Error_window win_err(Point(200,200),500,25,"Error", "This image does not exist or this is an invalid url");
+        win_err.wait_for_button();
+    }
 }
 
 //------------------------------------------------------------------------------

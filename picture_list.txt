@@ -1,2 +1,0 @@
-images/lamb.jpg one two three
-images/lamb.jpg

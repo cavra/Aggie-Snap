@@ -369,9 +369,9 @@ struct Mark : Marks {
 //------------------------------------------------------------------------------
 
 struct Suffix {
-    enum Encoding { none, jpg, gif  };
+    enum Encoding { none, jpg, gif, png, bmp };
 };
-
+//added png and bmp
 Suffix::Encoding get_encoding(const string& s);
 
 //------------------------------------------------------------------------------
@@ -381,7 +381,6 @@ struct Image : Shape {
     ~Image() { delete p; }
     void draw_lines() const;
     void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
-    //virtual Fl_Image *copy(int W, int H);
 private:
     int w,h;  // define "masking box" within image relative to position (cx,cy)
     int cx,cy; 

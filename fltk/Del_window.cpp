@@ -1,31 +1,29 @@
-#include "Search_window.h"
+#include "Del_window.h"
 #include "../database.h"
-#include "../images.h"
 #include "../std_lib_facilities_4.h"
-#include "Filtered_image_window.h"
 
 using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
-Search_window::Search_window(Point xy, int w, int h, const string& title) :
+Del_window::Del_window(Point xy, int w, int h, const string& title) :
     Window(xy,w,h,title),
 
-    submit_button(Point(x_max()-140,0), 70, y_max(), "Submit", cb_submit),
+    submit_button(Point(x_max()-140,0), 70, y_max(), "Delete", cb_submit),
     quit_button(Point(x_max()-70,0), 70, y_max(), "Close", cb_quit),
 
-    tag_input   {Point(110,0), x_max()-250, y_max(), "Search by Tag:"},
+    image_input   {Point(110,0), x_max()-250, y_max(), "Image to delete:"},
 
     button_pushed(false)
 {
-    attach(tag_input);
+    attach(image_input);
     attach(submit_button);
     attach(quit_button);
 }
 
 //------------------------------------------------------------------------------
 
-bool Search_window::wait_for_button()
+bool Del_window::wait_for_button()
 {
     show();
     button_pushed = false;
@@ -40,37 +38,30 @@ bool Search_window::wait_for_button()
 
 //------------------------------------------------------------------------------
 
-void Search_window::cb_submit(Address, Address pw)
+void Del_window::cb_submit(Address, Address pw)
 {
-    reference_to<Search_window>(pw).submit();
+    reference_to<Del_window>(pw).submit();
 }
 
 //------------------------------------------------------------------------------
 
-void Search_window::cb_quit(Address, Address pw)
+void Del_window::cb_quit(Address, Address pw)
 {
-    reference_to<Search_window>(pw).quit();
+    reference_to<Del_window>(pw).quit();
 }
 
 //------------------------------------------------------------------------------
 
-void Search_window::submit()
+void Del_window::submit()
 {
     hide();
     button_pushed = true;
-    search_tags(tag_input.get_string());
-    get_filtered_images();
-    extern vector<string> found_vector;
-    if(found_vector.size() > 0){
-        Filtered_image_window win_filtered(Point(200,200),700,500,"Filtered Images");
-        win_filtered.wait_for_button();
-    }
-    else cerr<<"No images found"<<endl;
+    delete_image(image_input.get_string()); //call the delete_image function from database.cpp
 }
 
 //------------------------------------------------------------------------------
 
-void Search_window::quit()
+void Del_window::quit()
 {
     hide();
     button_pushed = true;

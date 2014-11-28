@@ -3,18 +3,15 @@
 #include "fltk/Point.h"
 #include "std_lib_facilities_4.h"
 
+//two main functions
 void get_images();
+void get_filtered_images();
 
-struct Tag_Image : Shape {
-    Tag_Image(Point xy, string file_name, string tag1, string tag2, string tag3, string tag4, string tag5, Suffix::Encoding e = Suffix::none);
-    ~Tag_Image() { delete p; }
-    void draw_lines() const;
-    void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
-    //virtual Fl_Image *copy(int W, int H);
-private:
-    int w,h;  // define "masking box" within image relative to position (cx,cy)
-    int cx,cy;
-    Fl_Image* p;
-    Text fn;
-    
-};
+//tag function called to get tags for display
+string get_tags(string file_name);
+
+//all sub-functions of get_tags()
+void get_current_line(string file_name);
+void line_to_string();
+void find_tags();
+string tags_to_string(); //returns string to get_tags() to be returned to original caller
