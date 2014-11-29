@@ -15,4 +15,4 @@ Also, I'm not entirely sure that the window files (Menu_window, File_window_, Er
 
 Lastly, we actually have 3 of the last objectives completed, so we should get 5 extra points
 
-Right now, I'm guessing we would get <80 on the project. If we can get the things we're missing, we could get a 100 or more.
+Right now, I'm guessing we would get >80 on the project. If we can get the things we're missing, we could get a 100 or more.
