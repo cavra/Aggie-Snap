@@ -145,7 +145,7 @@ void write_to_database(string file_name){
 }
 
 //define ints to be used as indexes
-int j = 0;
+int j = -1;
 int k = 0;
 
 //define the external vectors from images.cpp
@@ -160,10 +160,12 @@ bool increase_index(){
         return true;
     }
     else {
-        cerr<<"No more Images"<<endl;
-        Error_window win_err(Point(200,200),250,25,"Error", "No more images");
-        win_err.wait_for_button();
-        return false;
+		j=0;
+		return true;
+        //cerr<<"No more Images"<<endl;
+        //Error_window win_err(Point(200,200),250,25,"Error", "No more images");
+        //win_err.wait_for_button();
+        //return false;
     }
 }
 
@@ -173,10 +175,12 @@ bool decrease_index(){
         return true;
     }
     else {
-        cerr<<"No more Images"<<endl;
-        Error_window win_err(Point(200,200),250,25,"Error", "No more images");
-        win_err.wait_for_button();
-        return false;
+		j=images_vector.size()-1;
+        return true;		
+       // cerr<<"No more Images"<<endl;
+       // Error_window win_err(Point(200,200),250,25,"Error", "No more images");
+       // win_err.wait_for_button();
+       // return false;
     }
 }
 

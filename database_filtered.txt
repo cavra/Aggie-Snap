@@ -1,3 +1,10 @@
+images/aggieland.bmp , aggies , aggieland , Tamu ;
+images/campus.BMP , aggieland , campus , TAMU , A&M , university ;
+images/football.jpg , TAMU , A&M , football , gameday ;
 images/helmet.JPG , A&M , logo , football , helmet , tamu ;
+images/howdy.jpeg , students , A&M , howdy , shirts , friendly ;
+images/kyle_field.JPEG , stadium , kyle , field , kylefield , football ;
 images/logo.png , A&M , logo , Texas , tamu ;
+images/reveille.PNG , A&M , mascot , Reveille , football , corps ;
+images/texas.gif , A&M , logo , texas ;
 images/touchdown.GIF , A&M , football , tamu , touchdown , victory ;
