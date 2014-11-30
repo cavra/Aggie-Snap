@@ -125,9 +125,8 @@ void Menu_window::next()
     rec1.set_fill_color(Color::black);
     attach(rec1);
     Image pic{Point{100,20}, images_vector[j]};
-	
     pic.set_mask(Point{0,0},500,480);
-    Text tags(Point(100,15), std::to_string(j)+")"+images_vector[j]+"; Tags: "+get_tags(images_vector[j]));
+	Text tags(Point(100,15), std::to_string(j)+")"+images_vector[j]+"; Tags: "+get_tags(images_vector[j]));
     tags.set_color(Color::white);
     attach(pic);
     attach(tags);

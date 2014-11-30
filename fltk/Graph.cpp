@@ -10,7 +10,6 @@
 // This is a GUI support code to the chapters 12-16 of the book
 // "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 //
-
 #include <FL/Fl_BMP_Image.H> //added
 #include <FL/Fl_PNG_Image.H> //added
 #include <FL/Fl_GIF_Image.H>
@@ -456,16 +455,32 @@ Image::Image(Point xy, string s, Suffix::Encoding e)
 
     switch(e) {        // check if it is a known encoding
     case Suffix::jpg:
-        p = new Fl_JPEG_Image(s.c_str());
+		{
+			p = new Fl_JPEG_Image(s.c_str());
+			Fl_Image *scaled_image = p->copy(500, 500);
+			p = scaled_image;
+		}	
         break;
     case Suffix::gif:
-        p = new Fl_GIF_Image(s.c_str());
-        break;
+		{
+			p = new Fl_GIF_Image(s.c_str());
+			Fl_Image *scaled_image = p->copy(500, 500);
+			p = scaled_image;
+		}	
+       break;
 	case Suffix::png:
-		p = new Fl_PNG_Image(s.c_str());
+		{
+			p = new Fl_PNG_Image(s.c_str());
+			Fl_Image *scaled_image = p->copy(500, 500);
+			p = scaled_image;
+		}	
 		break;
 	case Suffix::bmp:
-		p = new Fl_BMP_Image(s.c_str());
+		{
+			p = new Fl_BMP_Image(s.c_str());
+			Fl_Image *scaled_image = p->copy(500, 500);
+			p = scaled_image;
+		}	
 		break;
     default:    // Unsupported image encoding
         fn.set_label("unsupported file type \""+s+'\"');

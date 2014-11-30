@@ -162,10 +162,6 @@ bool increase_index(){
     else {
 		j=0;
 		return true;
-        //cerr<<"No more Images"<<endl;
-        //Error_window win_err(Point(200,200),250,25,"Error", "No more images");
-        //win_err.wait_for_button();
-        //return false;
     }
 }
 
@@ -177,10 +173,6 @@ bool decrease_index(){
     else {
 		j=images_vector.size()-1;
         return true;		
-       // cerr<<"No more Images"<<endl;
-       // Error_window win_err(Point(200,200),250,25,"Error", "No more images");
-       // win_err.wait_for_button();
-       // return false;
     }
 }
 
