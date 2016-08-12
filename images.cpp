@@ -15,6 +15,8 @@ vector<string> holding_vector;
 //declare string to be used across several functions
 string found_line;
 
+//------------------------------------------------------------------------------
+
 void get_images(){
     //clear vectors of old data
     images_vector.erase(images_vector.begin(), images_vector.end());
@@ -31,6 +33,8 @@ void get_images(){
     }
     ist.close();
 }
+
+//------------------------------------------------------------------------------
 
 void get_filtered_images(){
     //clear vectors of old data
@@ -49,6 +53,8 @@ void get_filtered_images(){
     ist.close();
 }
 
+//------------------------------------------------------------------------------
+
 string get_tags(string file_name){
     //clear vectors of old data
     tag_vector.erase(tag_vector.begin(), tag_vector.end());
@@ -60,6 +66,8 @@ string get_tags(string file_name){
     find_tags();
     return tags_to_string();
 }
+
+//------------------------------------------------------------------------------
 
 //find the line of the current picture
 void get_current_line(string file_name){
@@ -76,6 +84,8 @@ void get_current_line(string file_name){
     ist.close();
 }
 
+//------------------------------------------------------------------------------
+
 //convert line into series of strings
 void line_to_string(){
     string buff;
@@ -84,6 +94,8 @@ void line_to_string(){
         holding_tag_vector.push_back(buff);
     }
 }
+
+//------------------------------------------------------------------------------
 
 //find which strings are tags and put them into a new vector
 void find_tags(){
@@ -96,6 +108,8 @@ void find_tags(){
         }
     }
 }
+
+//------------------------------------------------------------------------------
 
 //turn the new vector into a string and return
 string tags_to_string(){

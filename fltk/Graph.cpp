@@ -457,28 +457,28 @@ Image::Image(Point xy, string s, Suffix::Encoding e)
     case Suffix::jpg:
 		{
 			p = new Fl_JPEG_Image(s.c_str());
-			Fl_Image *scaled_image = p->copy(500, 500);
+			Fl_Image *scaled_image = p->copy(500, 480);
 			p = scaled_image;
 		}	
         break;
     case Suffix::gif:
 		{
 			p = new Fl_GIF_Image(s.c_str());
-			Fl_Image *scaled_image = p->copy(500, 500);
+			Fl_Image *scaled_image = p->copy(500, 480);
 			p = scaled_image;
 		}	
        break;
 	case Suffix::png:
 		{
 			p = new Fl_PNG_Image(s.c_str());
-			Fl_Image *scaled_image = p->copy(500, 500);
+			Fl_Image *scaled_image = p->copy(500, 480);
 			p = scaled_image;
 		}	
 		break;
 	case Suffix::bmp:
 		{
 			p = new Fl_BMP_Image(s.c_str());
-			Fl_Image *scaled_image = p->copy(500, 500);
+			Fl_Image *scaled_image = p->copy(500, 480);
 			p = scaled_image;
 		}	
 		break;

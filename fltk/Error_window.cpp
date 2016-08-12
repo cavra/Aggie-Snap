@@ -6,12 +6,14 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//define the window and its objects
 Error_window::Error_window(Point xy, int w, int h, const string& title, const string& message) :
     Window(xy,w,h,title),
 
     quit_button(Point(x_max()-70,0), 70, y_max(), "Close", cb_quit),
     error_message{Point{10,15}, "Error: "+message},
 
+//attach the objects
 button_pushed(false)
 {
     attach(error_message);
@@ -20,6 +22,7 @@ button_pushed(false)
 
 //------------------------------------------------------------------------------
 
+//wait_for_button() function, taken from Simple_window.cpp
 bool Error_window::wait_for_button()
 {
     show();
@@ -35,6 +38,7 @@ bool Error_window::wait_for_button()
 
 //------------------------------------------------------------------------------
 
+//callback function for quit button
 void Error_window::cb_quit(Address, Address pw)
 {
     reference_to<Error_window>(pw).quit();
@@ -42,6 +46,7 @@ void Error_window::cb_quit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//quit function, close the window
 void Error_window::quit()
 {
     hide();

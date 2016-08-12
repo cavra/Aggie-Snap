@@ -9,12 +9,15 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//File_window will pop up when a user wants to open a local image file
+//File_window inherits from Window from Graph_lib
 struct File_window : Graph_lib::Window {
     File_window(Point xy, int w, int h, const string& title );
     
     bool wait_for_button();
 
 private:
+    //declare buttons and input boxes, as well as the callback functions
     Button submit_button;
     Button quit_button;
     

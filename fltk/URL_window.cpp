@@ -8,6 +8,7 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//define the window and its objects
 URL_window::URL_window(Point xy, int w, int h, const string& title) :
     Window(xy,w,h,title),
 
@@ -18,6 +19,7 @@ URL_window::URL_window(Point xy, int w, int h, const string& title) :
     name_input   {Point(50,y_max()/3), x_max()-190, y_max()/3, "Name:"},
     tag_input   {Point(50,(y_max()/3)*2), x_max()-190, y_max()/3, "Tags:"},
 
+//attach the objects
     button_pushed(false)
 {
     attach(url_input);
@@ -29,6 +31,7 @@ URL_window::URL_window(Point xy, int w, int h, const string& title) :
 
 //------------------------------------------------------------------------------
 
+//wait_for_button() function, taken from Simple_window.cpp
 bool URL_window::wait_for_button()
 {
     show();
@@ -44,6 +47,7 @@ bool URL_window::wait_for_button()
 
 //------------------------------------------------------------------------------
 
+//callback function for submit button
 void URL_window::cb_submit(Address, Address pw)
 {
     reference_to<URL_window>(pw).submit();
@@ -51,6 +55,7 @@ void URL_window::cb_submit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for quit button
 void URL_window::cb_quit(Address, Address pw)
 {
     reference_to<URL_window>(pw).quit();
@@ -58,6 +63,9 @@ void URL_window::cb_quit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//submit function, send the entered data to the database in database.cpp
+//and open Image_window if the url is valid and image exists
+//otherwise open Error_window
 void URL_window::submit()
 {
     hide();
@@ -76,6 +84,7 @@ void URL_window::submit()
 
 //------------------------------------------------------------------------------
 
+//quit function, close the window
 void URL_window::quit()
 {
     hide();

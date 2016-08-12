@@ -8,12 +8,15 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//Error window will pop up whenever an error occurs
+//Error_window inherits from Window from Graph_lib
 struct Error_window : Graph_lib::Window {
     Error_window(Point xy, int w, int h, const string& title, const string& message);
     
     bool wait_for_button();
 
 private:
+    //declare the close button and error text, as well as the callback functions
     Button quit_button;
     
     Text error_message;

@@ -9,12 +9,15 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//URL_window will pop up when a user wants to download an image from a URL
+//URL_window inherits from Window from Graph_lib
 struct URL_window : Graph_lib::Window {
     URL_window(Point xy, int w, int h, const string& title );
     
     bool wait_for_button();
 
 private:
+    //declare buttons and input boxes, as well as the callback functions
     Button submit_button;
     Button quit_button;
     

@@ -14,6 +14,7 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//define the window and its objects
 Menu_window::Menu_window(Point xy, int w, int h, const string& title) :
     Window(xy,w,h,title),
 
@@ -26,17 +27,13 @@ Menu_window::Menu_window(Point xy, int w, int h, const string& title) :
     del_button      (Point((x_max()/5)*3,y_max()-100), (x_max()/5)*1, y_max()/6, "Delete an Image", cb_del),
     quit_button     (Point((x_max()/5)*4,y_max()-100), (x_max()/5)*1, y_max()/6, "Quit", cb_quit),
 
-    picture(Point(100,0), "images/about.jpg"),
-
-    tagz{Point{100,15}, "A project for CSCE 121"},
+    picture(Point(100,20), "images/about.jpg"),
 
     rec(Point{100,0}, 500, 500),
 
-	
+//attach the objects
 button_pushed(false)
 {
-    picture.set_mask(Point{0,0},500,500);
-    tagz.set_color(Color::white);
     rec.set_fill_color(Color::black);
     attach(rec);
     attach(picture);
@@ -47,12 +44,11 @@ button_pushed(false)
     attach(search_button);
     attach(del_button);
     attach(quit_button);
-    //attach(tagz);
 }
 
 //------------------------------------------------------------------------------
 
-
+//wait_for_button() function, taken from Simple_window.cpp
 bool Menu_window::wait_for_button()
 {
     show();
@@ -68,6 +64,7 @@ bool Menu_window::wait_for_button()
 
 //------------------------------------------------------------------------------
 
+//callback function for next button
 void Menu_window::cb_next(Address, Address pw)
 {
     reference_to<Menu_window>(pw).next();    
@@ -75,6 +72,7 @@ void Menu_window::cb_next(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for previous button
 void Menu_window::cb_previous(Address, Address pw)
 {
     reference_to<Menu_window>(pw).previous();
@@ -82,6 +80,7 @@ void Menu_window::cb_previous(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for open image button
 void Menu_window::cb_open(Address, Address pw)
 {
     reference_to<Menu_window>(pw).open();
@@ -89,6 +88,7 @@ void Menu_window::cb_open(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for upload image button
 void Menu_window::cb_upload(Address, Address pw)
 {
     reference_to<Menu_window>(pw).upload();
@@ -96,6 +96,7 @@ void Menu_window::cb_upload(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for search button
 void Menu_window::cb_search(Address, Address pw)
 {
     reference_to<Menu_window>(pw).search();
@@ -103,6 +104,7 @@ void Menu_window::cb_search(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for delete image button
 void Menu_window::cb_del(Address, Address pw)
 {
     reference_to<Menu_window>(pw).del();
@@ -110,6 +112,7 @@ void Menu_window::cb_del(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for quit button
 void Menu_window::cb_quit(Address, Address pw)
 {
     reference_to<Menu_window>(pw).quit();
@@ -117,44 +120,55 @@ void Menu_window::cb_quit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//next function, increase index of database vector and draw the image
 void Menu_window::next()
 {
     button_pushed = true;
     increase_index(); //increase value of j
+    
+    //create the objects
     Rectangle rec1(Point{100,0}, 500, 500);
     rec1.set_fill_color(Color::black);
-    attach(rec1);
-    Image pic{Point{100,20}, images_vector[j]};
-    pic.set_mask(Point{0,0},500,480);
+    Image pic{Point{100,20}, images_vector[j]}; //create image using functions from database.cpp
+    //create the tags using functions from database.cpp
 	Text tags(Point(100,15), std::to_string(j)+")"+images_vector[j]+"; Tags: "+get_tags(images_vector[j]));
-    tags.set_color(Color::white);
+    tags.set_color(Color::white); //make tags white (black background)
+    
+    //attach everything
+    attach(rec1); //attach background before everything else
     attach(pic);
     attach(tags);
-    redraw();
+    redraw(); //refresh the window
     wait_for_button();
 }
     
 //------------------------------------------------------------------------------
 
+//previous function, decrease index of database vector and draw the image
 void Menu_window::previous()
 {
     button_pushed = true;
     decrease_index(); //decrease value of j
+    
+    //create the objects
     Rectangle rec1(Point{100,0}, 500, 500);
     rec1.set_fill_color(Color::black);
-    attach(rec1);
-    Image pic{Point{100,20}, images_vector[j]};
-    pic.set_mask(Point{0,0},500,480);
+    Image pic{Point{100,20}, images_vector[j]}; //create image using functions from database.cpp
+    //create the tags using functions from database.cpp
     Text tags(Point(100,15), std::to_string(j)+")"+images_vector[j]+"; Tags: "+get_tags(images_vector[j]));
-    tags.set_color(Color::white);
+    tags.set_color(Color::white); //make tags white (black background)
+    
+    //attach everything
+    attach(rec1); //attach background before everything else
     attach(pic);
     attach(tags);
-    redraw();
+    redraw(); //refresh the window
     wait_for_button();
 }
 
 //------------------------------------------------------------------------------
 
+//open image function, opens File_window to gather data
 void Menu_window::open()
 {
     button_pushed = true;
@@ -165,6 +179,7 @@ void Menu_window::open()
 
 //------------------------------------------------------------------------------
 
+//download from URL function, opens URL_window to gather data
 void Menu_window::upload()
 {
     button_pushed = true;
@@ -175,6 +190,7 @@ void Menu_window::upload()
 
 //------------------------------------------------------------------------------
 
+//Search function, opens Search_window to gather data
 void Menu_window::search()
 {
     button_pushed = true;
@@ -186,6 +202,7 @@ void Menu_window::search()
 
 //------------------------------------------------------------------------------
 
+//Delete image function, opens Del_window to gather data
 void Menu_window::del()
 {
     button_pushed = true;
@@ -196,6 +213,7 @@ void Menu_window::del()
 
 //------------------------------------------------------------------------------
 
+//quit function, closes the program
 void Menu_window::quit()
 {
     hide();

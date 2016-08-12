@@ -8,13 +8,15 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//Menu_window is the primary window. It opens at startup
+//Menu_window inherits from Window from Graph_lib
 struct Menu_window : Graph_lib::Window {
     Menu_window(Point xy, int w, int h, const string& title );
 
     bool wait_for_button();
 
 private:
-    
+    //declare buttons, image, text for tags, and  background rectangle, as well as the callback functions
     Button next_button;
     Button previous_button;
     Button open_button;
@@ -24,7 +26,6 @@ private:
     Button quit_button;
         
     Image picture;
-    Text tagz;
     
     Rectangle rec;
     

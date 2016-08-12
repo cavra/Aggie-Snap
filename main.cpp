@@ -5,7 +5,8 @@
 
 int main()
 try {
-    get_images(); //load vectors with the database
+    get_images(); //load vectors with the database from images.cpp
+    
     if(H112 != 201401L) error("Error: incorrect std_lib_facilities_4.h version ", H112);
     Menu_window win_main(Point(0,0),700,600,"AggieSnap");
         

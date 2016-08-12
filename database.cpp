@@ -11,6 +11,8 @@ vector<string> lines_vector;
 vector<string> tags_vector;
 vector<string> found_vector;
 
+//------------------------------------------------------------------------------
+
 bool open_file(string input, string tags){
     //edit the user inputted filename to be placed in the image file
     string file_name = "images/"+input;
@@ -28,6 +30,8 @@ bool open_file(string input, string tags){
         return false;
     }
 }
+
+//------------------------------------------------------------------------------
 
 bool open_url(string url, string tags, string name){
     //edit the user inputted filename to be placed in the image file
@@ -50,6 +54,8 @@ bool open_url(string url, string tags, string name){
     }
 }
 
+//------------------------------------------------------------------------------
+
 void search_tags(string tag){
     //clear the vectors of any old data
     found_vector.erase(found_vector.begin(), found_vector.end());
@@ -57,7 +63,7 @@ void search_tags(string tag){
     //refresh lines_vector
     copy_contents();
     
-    //using the lines_vector from copy_content(), search each line for a user inputted tag
+    //using lines_vector, search each line for a user inputted tag
     for(int i = 0; i<lines_vector.size(); i++){
         size_t pos = lines_vector[i].find(tag);
         if (pos != string::npos){
@@ -68,11 +74,11 @@ void search_tags(string tag){
     //write the found lines to a new .txt file
     ofstream ost{"database_filtered.txt"};
     if(!ost) error("Cant open output file", " database_filtered.txt");
-    for(int i = 0; i<found_vector.size(); i++){
-        ost<<found_vector[i]<<endl;
-    }
+    for(int i = 0; i<found_vector.size(); i++) ost<<found_vector[i]<<endl;
     ost.close();
 }
+
+//------------------------------------------------------------------------------
 
 void delete_image(string file_name){
     //refresh lines_vector
@@ -87,6 +93,8 @@ void delete_image(string file_name){
             ost<<lines_vector[i]<<endl;
     }
 }
+
+//------------------------------------------------------------------------------
 
 bool can_open(string file_name){
     //make sure image exists and can be opened (taken from Graph.cpp)
@@ -106,6 +114,8 @@ void separate_tags(string tags){
     }
 }
 
+//------------------------------------------------------------------------------
+
 void copy_contents(){
     //clear the vectors of any old data
     lines_vector.erase(lines_vector.begin(), lines_vector.end());
@@ -119,6 +129,8 @@ void copy_contents(){
     }
     ist.close();
 }
+
+//------------------------------------------------------------------------------
 
 void write_to_database(string file_name){
     //write all elements of lines_vector back into the database, except for file to be added with new tags
@@ -139,10 +151,11 @@ void write_to_database(string file_name){
     }
     
     //finish the line with a semicolon for marking purposes
-    ost<<" ;";
-    ost<<endl;
+    ost<<" ;"<<endl;
     ost.close();
 }
+
+//------------------------------------------------------------------------------
 
 //define ints to be used as indexes
 int j = -1;
@@ -154,16 +167,21 @@ extern vector<string> filtered_images_vector;
 
 //for each function, make sure the index does not exceed/subceed the size of the vector
 //send a message to console if it does
+
+//------------------------------------------------------------------------------
+
 bool increase_index(){
     if(j<images_vector.size()-1){
         j+=1;
         return true;
     }
     else {
-		j=0;
-		return true;
+	j=0;
+	return true;
     }
 }
+
+//------------------------------------------------------------------------------
 
 bool decrease_index(){
     if(j>0){ //vectors cannot have a size < 0
@@ -171,10 +189,12 @@ bool decrease_index(){
         return true;
     }
     else {
-		j=images_vector.size()-1;
+	j=images_vector.size()-1;
         return true;		
     }
 }
+
+//------------------------------------------------------------------------------
 
 bool increase_filtered_index(){
     if(k<filtered_images_vector.size()-1){
@@ -188,6 +208,8 @@ bool increase_filtered_index(){
         return false;
     }
 }
+
+//------------------------------------------------------------------------------
 
 bool decrease_filtered_index(){
     if(k>0){ //vectors cannot have a size < 0

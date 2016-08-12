@@ -1,4 +1,5 @@
 #include "Search_window.h"
+#include "Error_window.h"
 #include "../database.h"
 #include "../images.h"
 #include "../std_lib_facilities_4.h"
@@ -8,6 +9,7 @@ using namespace Graph_lib;
 
 //------------------------------------------------------------------------------
 
+//define the window and its objects
 Search_window::Search_window(Point xy, int w, int h, const string& title) :
     Window(xy,w,h,title),
 
@@ -16,6 +18,7 @@ Search_window::Search_window(Point xy, int w, int h, const string& title) :
 
     tag_input   {Point(110,0), x_max()-250, y_max(), "Search by Tag:"},
 
+//attach the objects
     button_pushed(false)
 {
     attach(tag_input);
@@ -25,6 +28,7 @@ Search_window::Search_window(Point xy, int w, int h, const string& title) :
 
 //------------------------------------------------------------------------------
 
+//wait_for_button() function, taken from Simple_window.cpp
 bool Search_window::wait_for_button()
 {
     show();
@@ -40,6 +44,7 @@ bool Search_window::wait_for_button()
 
 //------------------------------------------------------------------------------
 
+//callback function for submit button
 void Search_window::cb_submit(Address, Address pw)
 {
     reference_to<Search_window>(pw).submit();
@@ -47,6 +52,7 @@ void Search_window::cb_submit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//callback function for quit button
 void Search_window::cb_quit(Address, Address pw)
 {
     reference_to<Search_window>(pw).quit();
@@ -54,6 +60,9 @@ void Search_window::cb_quit(Address, Address pw)
 
 //------------------------------------------------------------------------------
 
+//submit function, send the inputted tag to the database in database.cpp
+//and open Filtered_image_window if the tag finds any images
+//otherwise open Error_window
 void Search_window::submit()
 {
     hide();
@@ -65,11 +74,16 @@ void Search_window::submit()
         Filtered_image_window win_filtered(Point(200,200),700,500,"Filtered Images");
         win_filtered.wait_for_button();
     }
-    else cerr<<"No images found"<<endl;
+    else {
+        cerr<<"No images found"<<endl;
+        Error_window win_err(Point(200,200),250,25,"Error", "No images found");
+        win_err.wait_for_button();
+    }
 }
 
 //------------------------------------------------------------------------------
 
+//quit function, close the window
 void Search_window::quit()
 {
     hide();
